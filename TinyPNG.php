@@ -49,6 +49,7 @@ class TinyPNG {
 	 * @return boolean       Is HTTP response 200
 	 */
 	public function shrink($file){
+		if(!file_exists($file)) return false;
 		curl_setopt($this->getCurl(), CURLOPT_POSTFIELDS, file_get_contents($file));
 		$this->lastResult = curl_exec($this->getCurl());
 		return curl_getinfo($this->getCurl(), CURLINFO_HTTP_CODE) === 200;
